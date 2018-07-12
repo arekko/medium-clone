@@ -1,0 +1,58 @@
+.btn-input {
+    border: none;
+    margin-right: -30px;
+    background-color: transparent;
+    z-index: 99;
+}
+
+.header-input {
+    border-radius: 30px;
+    font-size: 14px;
+    background-color: transparent;
+    padding-left: 30px;
+    color: #141414;
+}
+.search-icon {
+    color: #727272;
+}
+.btn-br {
+    border-radius: 30px;
+}
+.signin-dialog {
+    height: 100%;
+    background-image: url('https://cdn-images-1.medium.com/proxy/1*lQWWgHf-jUvQVEyAKQLIkw@2x.png');
+    background-repeat: none;
+    background-position: 20px 100%;
+    background-size: auto 290px;
+    background-repeat: no-repeat!important;
+}
+
+.signin-dialog__title {
+    font-size: 32px;
+    color: #000;
+    text-align: center;
+    padding: 30px 0 20px 0;
+    line-height: 36px;
+}
+.signin-dialog_text{
+    font-size: 17px;
+    color: #000;
+    text-align: center;
+    line-height: 24px;
+    margin-bottom: 30px;
+}
+.signin-dialog_btn {
+    background-color: #fff;
+    text-align: left;
+    width: 70%;
+    margin: 0 auto;
+}
+.signin-dialog_btn i {
+    margin-right: 5px;
+}
+.signin-dialog__st {
+    color: #000;
+    text-align: center;
+    font-size: 15px;
+    width: 90%;
+}
