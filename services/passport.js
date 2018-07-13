@@ -37,8 +37,7 @@ passport.use(
             const newUser = new User({
               googleid: profile.id,
               googletoken: token,
-              firstname: profile._json.givenName,
-              lastname: profile._json.familyName,
+              name: profile.displayName,
               email: profile.emails[0].value,
               avatar: profile.photos[0].value
             }).save().then(newUser => done(null, newUser))

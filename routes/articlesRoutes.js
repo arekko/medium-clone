@@ -1,54 +1,42 @@
-const express = require("express");
+const articlecontroller = require('./../controllers/article.ctrl');
+const multipart = require('connect-multiparty');
+const multipartWare = multipart();
+const express = require('express')
 const router = express.Router();
-const User = require("../models/User");
-const Article = require("../models/Article");
+
+// module.exports = (router) => {
+  /**
+   * get all articles
+   */
+  router
+    .route('/articles')
+    .get(articlecontroller.getAll);
+  /**
+   * add an article
+   */
+  router
+    .route('/article')
+    .post(multipartWare, articlecontroller.addArticle);
+  /**
+   * comment on an article
+   */
+  // router
+  //   .route('/article/comment')
+  //   .post(articlecontroller.commentArticle);
+  // /**
+  //  * get a particlular article to view
+  //  */
+  // router
+  //   .route('/article/:id')
+  //   .get(articlecontroller.getArticle)
+
+  router
+    .route('hello')
+    .get((req, res) => {
+      res.send('hello')
+    })
+
+// 
+module.exports = router
 
 
-
-
-
-router.get('/getall', (req, res) => {
-  Article.find(req.params.id)
-    .populate('author')
-    .populate('comments.author').exec((err, article)=> {
-    if (err)
-      res.send(err);
-    else if (!article)
-      res.send(404);
-    else
-      res.send(article);
-  })
-})
-
-// router.post('/addpost', (req, res) => {
-//   let { text, title, description } = req.body;
-//   // if (req.files.image) {
-//   //   cloudinary.uploader.upload(req.files.image.path, (result) => {
-//   //     let obj = { text, title, claps, description, feature_img: result.url != null ? result.url : '' };
-//   //     saveArticle(obj)
-//   //   },{
-//   //     resource_type: 'image',
-//   //     eager: [
-//   //       {effect: 'sepia'}
-//   //     ]
-//   //   })
-//   // }else {
-//     saveArticle({ text, title, description, feature_img: '' })
-//   // }
-//   function saveArticle(obj) {
-//     new Article(obj).save((err, article) => {
-//       if (err)
-//         res.send(err);
-//       else if (!article)
-//         res.send(400);
-//       else {
-//         return article.addAuthor(req.body.author_id).then((_article) => {
-//           return res.send(_article)
-//         })
-//       }
-//     })
-//   }
-// },)
-
-
-module.exports = router;

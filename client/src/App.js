@@ -8,6 +8,7 @@ import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup'
 import { connect } from 'react-redux'
 import { fetchUser } from './redux/actions/authActions'
+import AddPost from './components/AddPost/AddPost'
 import './App.css';
 
 class App extends Component {
@@ -20,14 +21,16 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="container">
-          <Header />
-          <Route path="/" exact component={Feed} />
-          <Route path="/feed" exact component={Feed} />
-          <Route path ="/profile" component={Profile} />
-          <Route path ="/login" component={Login} />
-        <Route path ="/signup" component={Signup} />
-
+        <div className="app">
+          <div className="container">
+            <Header />
+            <Route path="/" exact component={Feed} />
+            <Route path="/feed" exact component={Feed} />
+            <Route path ="/profile" component={Profile} />
+            <Route path ="/login" component={Login} />
+            <Route path ="/signup" component={Signup} />
+            <Route path ="/addnewpost" component={AddPost} />
+          </div>
         </div>
       </BrowserRouter>
     );

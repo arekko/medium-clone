@@ -21,8 +21,10 @@ class Header extends React.Component {
     const { isAuthenticated, user } = this.props.auth
 
     const authLinks = (
-      <a href="/auth/logout" className="btn btn-outline-success btn-br ml-5" >Logout</a>
-
+      <React.Fragment>
+        <Link to="/addnewpost" className="btn btn-outline-primary btn-br">Write a story</Link>
+        <a href="/auth/logout" className="btn btn-outline-success btn-br ml-2 " >Logout</a>
+      </React.Fragment>
     )
   
     const guestLinks = (
