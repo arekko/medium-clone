@@ -1,5 +1,6 @@
 const express = require('express');
 const authRoutes = require('./routes/authRoutes')
+const articleRoutes = require('./routes/articlesRoutes')
 const mongoose = require('mongoose');
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
@@ -38,6 +39,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // Routes
 app.use('/', authRoutes);
+app.use('/api', articleRoutes);
 
 
 

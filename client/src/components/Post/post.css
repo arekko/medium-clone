@@ -73,3 +73,26 @@
   font-size: 12px;
   margin-top: 16px;
 }
+.like-btn {
+  color: #00ab6b;
+  font-size: 18px;
+  padding-right: 6px;
+}
+.like-count {
+  font-size: 14px;
+  position: relative;
+  top: -2.5px;
+  left: -3px;
+  color: rgba(0,0,0,0.3);
+  font-weight: 600;
+  margin-left: 3px;
+}
+.post-stats {
+  display: flex;
+  justify-content: space-between;
+}
+.response-count {
+  color: rgba(0,0,0,0.3);
+  margin-right: 5px;
+  text-decoration: none;
+}
