@@ -10,7 +10,7 @@ const passport = require('passport')
 var flash = require("connect-flash");
 const sessionSecret = require('./config/auth').sessionSecret
 const cloudinary = require('cloudinary');
-const cloudinaryKeys = require('cloudinary') 
+const cloudinaryKeys = require('./config/cloudinary') 
 const articleroutes = require('./routes/articlesRoutes');
 
 

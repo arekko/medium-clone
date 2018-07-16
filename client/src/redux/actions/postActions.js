@@ -1,14 +1,14 @@
-import axios from "axios";
-import {
-  LOAD_ARTICLES
-} from './types'
+import { LOAD_ARTICLES } from './types'
+import axios from 'axios'
+
+const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:3000/api/"
 
 export function loadArticles () {
   return (dispatch) => {
-    axios.get('/api/getall')
+    axios.get('http://localhost:3000/api/articles')
       .then((res) => {
         dispatch({
-          type:'LOAD_ARTICLES', 
+          type: LOAD_ARTICLES, 
           payload: res.data
         })
       }).catch((err) => {

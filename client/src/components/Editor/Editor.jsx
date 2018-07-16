@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import MediumEditor from 'medium-editor'
 import axios from 'axios'
+import EditorHeader from './EditorHeader/EditorHeader'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import './editor.css'
 
-
-
-class AddPost extends Component {
+class Editor extends Component {
   constructor () {
     super()
     this.state = {
@@ -15,6 +16,7 @@ class AddPost extends Component {
       imgSrc: null,
       loading: false
     }
+    
   }
 
   componentDidMount () {
@@ -75,6 +77,7 @@ class AddPost extends Component {
   }
 
   publishStory = () => {
+    console.log(this.props.auth.user._id)
     this.setState({
       loading: true
     })
@@ -86,16 +89,18 @@ class AddPost extends Component {
     formdata.append('author_id', this.props.auth.user._id)
     formdata.append('description', this.state.description)
     formdata.append('claps', 0)
-    axios.post(`${_url}article`,formdata).then((res) => {
-      console.log(res)
+    console.log(formdata)
+    axios.post(`http://localhost:3000/api/article`,formdata).then((res) => {
       this.setState({
         loading: false
-      })
+      }
+    )
     }).catch((err)=>{console.log(err); this.setState({loading: false})})
   }
 
-  handleClick () {
+  handleClick = () => {
     this.refs.fileUploader.click()
+    // console.log(this.refs.fileUploader)
   }
   previewImg () {
     const file = this.refs.fileUploader.files[0]
@@ -111,13 +116,12 @@ class AddPost extends Component {
 
 
   render() {
-    console.log(this.props.auth.user.avatar)
     return (
-      <div className="container">
       <div>
+      <EditorHeader publish={this.publishStory} loading={this.state.loading} />
       <div className="container-fluid main-container">
-        <div className="row animated fadeInUp" data-animation="fadeInUp-fadeOutDown">
-          <div id="main-post" className="col-xs-10 col-md-8 col-md-offset-2 col-xs-offset-1 main-content">
+        <div className="row">
+          <div id="main-post" className="col-md-6 offset-md-3 main-content">
             <div className="post-metadata">
               <img alt={this.props.auth.user.name}  src={this.props.auth.user.avatar} className="avatar-image" height="40" width="40" />
               <div className="post-info">
@@ -133,26 +137,26 @@ class AddPost extends Component {
               </div>
               <div className="form-group">
                 <span className="picture_upload">
-                  <i className="fa fa-camera" onClick={this.handleClick}></i>
+                  <i className="fas fa-camera" onClick={this.handleClick}></i>
                 </span>
               </div>
               <div className="form-group">
                 <textarea col="1" className="editor-title" id="editor-title" placeholder="Title"></textarea>
               </div>
               <div className="form-group">
-                <textarea id="medium-editable" className="medium-editable" ></textarea>
+                <textarea id="medium-editable" className="medium-editable"></textarea>
               </div>
-              <div class="hidden">
-                <input type="file" onChange={ ()=>this.previewImg()} id="file" ref="fileUploader"/>
+              <div className="hidden">
+                <input 
+                  type="file" 
+                  onChange={ ()=>this.previewImg()} 
+                  id="file" 
+                  ref="fileUploader" />
               </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
-    <button onClick={this.publishStory} >
-    {this.props.loading === true ? 'Publishing' : 'Publish'} <i className="fa fa-globe"></i>
-    </button>
       </div>
     )
   }
@@ -162,4 +166,4 @@ const mapStateToProps = ({auth}) =>({
   auth
 })
 
-export default connect(mapStateToProps)(AddPost)
+export default connect(mapStateToProps)(Editor)

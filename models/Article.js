@@ -22,13 +22,21 @@ let ArticleSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
-    text: String,
     date: {
       type: Date,
       default: Date.now()
     }
-  }]
+  }],
+  date: {
+    type: Date,
+    default: Date.now()
+  }
 });
+
+ArticleSchema.methods.addAuthor = function (author_id) {
+  this.author = author_id
+  return this.save()
+}
 
 
 module.exports = mongoose.model("Article", ArticleSchema)
