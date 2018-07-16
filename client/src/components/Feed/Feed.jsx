@@ -3,7 +3,7 @@ import Post from '../Post/Post'
 import { connect } from 'react-redux'
 import { loadArticles } from '../../redux/actions/postActions';
 import './feed.css'
-
+import Header from '../Header/Header'
 import fakearticles from '../../fakedata'
 
 class Feed extends React.Component {
@@ -17,13 +17,18 @@ class Feed extends React.Component {
   
 
   render() {
-    console.log(this.props.articles)
+      const { articles } = this.props
+      console.log(articles);
+    
     return (
-      <div className="container">
-        <div className="col-md-8 dashboard-main-content">
-          {fakearticles.reverse().map( article => (
-            <Post article={article}/>
-          ))} 
+      <div>
+        <Header />
+        <div className="container">
+          <div className="col-md-8 dashboard-main-content">
+            {articles.length > 0 ? articles.reverse().map( article => (
+              <Post article={article}/>
+            )): null} 
+          </div>
         </div>
       </div>
     );

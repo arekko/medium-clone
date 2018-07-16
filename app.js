@@ -1,5 +1,5 @@
 const express = require('express');
-const authRoutes = require('./routes/authRoutes')
+// const authRoutes = require('./routes/authRoutes')
 const articleRoutes = require('./routes/articlesRoutes')
 const mongoose = require('mongoose');
 const morgan = require("morgan");
@@ -9,6 +9,10 @@ const session = require("express-session");
 const passport = require('passport')
 var flash = require("connect-flash");
 const sessionSecret = require('./config/auth').sessionSecret
+const cloudinary = require('cloudinary');
+const cloudinaryKeys = require('./config/cloudinary') 
+const articleroutes = require('./routes/articlesRoutes');
+
 
 const app = express();
 
@@ -21,6 +25,13 @@ mongoose
     .catch( err => console.log(err))
 
 require('./services/passport')
+
+// cloudinary connection
+cloudinary.config({
+  cloud_name: cloudinaryKeys.cloud_name,
+  api_key: cloudinaryKeys.api_key,
+  api_secret: cloudinaryKeys.api_secret
+});
 
 //Middleware
 app.use(morgan("dev")); // log every request to the console
@@ -38,10 +49,9 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 // Routes
-app.use('/', authRoutes);
-app.use('/api', articleRoutes);
-
-
+require('./routes/authRoutes')(app)
+// Article routes
+app.use('/api', articleroutes);
 
 const PORT  = process.env.PORT || 5000;
 

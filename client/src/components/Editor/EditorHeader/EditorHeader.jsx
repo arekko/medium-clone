@@ -1,39 +1,24 @@
 import React, {PropTypes} from 'react';
 import { Link } from 'react-router-dom'
-import logo from '../../assets/logo.svg'
-import './header.css'
+import logo from '../../../assets/medium-brands.svg'
+// import './editorheader.css'
 import { connect } from 'react-redux'
-class Header extends React.Component {
+import './editorheader.css'
+
+class EditorHeader extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const pathname = window.location.pathname
-    console.log(pathname)
 
-    const { isAuthenticated, user } = this.props.auth
-
-    const authLinks = (
-      <React.Fragment>
-      <li className="nav-item">
-       <Link to="/editor" className="nav-link">Write a story</Link></li>
-      <li className="nav-item">
-        <a href="/auth/logout" className="btn btn-outline-success ml-2 " >Logout</a>
-      </li>
-      </React.Fragment>
-    )
-  
-    const guestLinks = (
-      <a href="/auth/google" className="btn btn-outline-success ml-3" >Sign in with Google</a>
-    )
 
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-white">
           <Link className="navbar-brand" to="/">
             <img src={logo} width="30" height="30" className="d-inline-block align-top mr-2" alt="Medium"/>
-          Medium
+          <small>Draft</small> 
           </Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -48,16 +33,20 @@ class Header extends React.Component {
               </li>
             </ul>
           </div>
-          <form className="form-inline">
-            <button className="btn-input" type="submit"><i className="fas fa-search search-icon"></i></button>
-          <input className="form-control mr-sm-2 header-input" type="search" placeholder="Search" aria-label="Search"/>
-          </form>
-          <ul className="navbar-nav navbar-right">
-            {isAuthenticated ? authLinks : guestLinks}
+          <ul className="navbar-nav navbar-right header-right">
+            <li className="nav-item mr-2">
+              <div 
+              className="nav-link publish"
+              onClick={this.props.publish}
+              >
+              {this.props.loading === true ? 'Publishing' : 'Publish'} <i className="fas fa-upload"></i>
+              </div>
+            </li>
+            <li className="nav-item">
+            <img alt={this.props.auth.user.name}  src={this.props.auth.user.avatar} className="avatar-image" height="40" width="40" />
+            </li>
           </ul>
         </nav>
-
-
       </div>
     );
   }
@@ -68,7 +57,7 @@ const mapStateToProps = ({auth}) => ({
 })
 
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps)(EditorHeader)
 
 
 //TODO: fix search buttons css

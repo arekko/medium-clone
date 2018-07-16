@@ -1,27 +1,42 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
 
-let ArticleSchema = new mongoose.Schema(
-  {
-    text: String,
-    title: String,
-    description: String,
-    feature_img: String,
-    claps: Number,
+
+let ArticleSchema = new Schema({
+  text: String,
+  title: String,
+  description: String,
+  feature_img: String,
+  likes: [{
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'users'
+    }
+  }],
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  comments: [{
     author: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User'
     },
-    comments: [
-      {
-        author: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'User'
-        },
-        text: String
-      }
-    ]
+    date: {
+      type: Date,
+      default: Date.now()
+    }
+  }],
+  date: {
+    type: Date,
+    default: Date.now()
   }
-);
+});
+
+ArticleSchema.methods.addAuthor = function (author_id) {
+  this.author = author_id
+  return this.save()
+}
 
 
 module.exports = mongoose.model("Article", ArticleSchema)

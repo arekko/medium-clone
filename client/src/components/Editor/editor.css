@@ -1,0 +1,145 @@
+.main-content .post-metadata {
+  margin-top: 20px;
+  padding-bottom: 20px;
+ }
+
+ .post-metadata .post-info {
+  padding-left: 10px;
+ }
+ .post-metadata .post-info a {
+  color: #00ab6b;
+  text-decoration: none;
+ }
+ .post-metadata .post-info small {
+  color: rgba(0, 0, 0, 0.44);
+ }
+ .editor-form .file-upload-previewer, .editor-form .existing-img-previewer {
+  padding: 0 0 2em;
+ }
+ .editor-form .file-upload-previewer>img, .editor-form .existing-img-previewer>img {
+  width: 100%}
+
+  .editor-form .picture_upload {
+    position: absolute;
+    top: 8px;
+    left: -50px;
+   }
+   .editor-form .picture_upload:hover {
+    cursor: pointer;
+   }
+   .editor-form .picture_upload.active {
+    color: #00ab6b;
+   }
+   .editor-form label.picture_upload input[type="file"] {
+    position: fixed;
+    top: -1000px;
+   }
+   .editor-form .file-upload-previewer, .editor-form .existing-img-previewer {
+    padding: 0 0 2em;
+   }
+   .editor-form .file-upload-previewer>img, .editor-form .existing-img-previewer>img {
+    width: 100%}
+   .picture_upload {
+    border: 1px solid rgba(0, 0, 0, 0.44);
+    border-radius: 50%;
+    margin: 2px;
+    color: rgba(0, 0, 0, 0.44);
+    display: inline-block;
+    float: right;
+    margin-right: 8px;
+    -webkit-transition: all .1s;
+    transition: all .1s;
+    width: 32px;
+    height: 32px;
+    position: relative;
+   }
+   .picture_upload .fa-camera {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,  -50%);
+    transform: translate(-50%,  -50%);
+   }
+   .picture_upload:hover {
+    border: 1px solid #00ab6b;
+    color: #00ab6b;
+   }
+   .editor-form {
+    position: relative;
+    padding-bottom: 2em;
+    margin-top: 20px;
+   }
+   .editor-form .editor-title {
+    font-size: 36px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    width: 100%}
+   .editor-form .medium-editable {
+    min-height: 300px;
+    outline: none;
+    font-family: "Lora",  Georgia,  serif;
+    font-size: 20px;
+    line-height: 1.7;
+    font-weight: 300;
+    border: none;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.5;
+    position: relative;
+    left: -60px;
+    padding-left: 60px;
+   }
+   .editor-form .picture_upload {
+    position: absolute;
+    top: 8px;
+    left: -50px;
+   }
+   .editor-form .picture_upload:hover {
+    cursor: pointer;
+   }
+   .editor-form .picture_upload.active {
+    color: #00ab6b;
+   }
+   .editor-form label.picture_upload input[type="file"] {
+    position: fixed;
+    top: -1000px;
+   }
+   .editor-form .file-upload-previewer, .editor-form .existing-img-previewer {
+    padding: 0 0 2em;
+   }
+   .editor-form .file-upload-previewer>img, .editor-form .existing-img-previewer>img {
+    width: 100%}
+   .picture_upload {
+    border: 1px solid rgba(0, 0, 0, 0.44);
+    border-radius: 50%;
+    margin: 2px;
+    color: rgba(0, 0, 0, 0.44);
+    display: inline-block;
+    float: right;
+    margin-right: 8px;
+    -webkit-transition: all .1s;
+    transition: all .1s;
+    width: 32px;
+    height: 32px;
+    position: relative;
+   }
+   .picture_upload .fa-camera {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,  -50%);
+    transform: translate(-50%,  -50%);
+   }
+   .picture_upload:hover {
+    border: 1px solid #00ab6b;
+    color: #00ab6b;
+   }
+   .hidden {
+    display: none !important;
+   }
+   .editor-form .editor-title {
+    font-size: 36px;
+    border: none;
+    outline: none;
+    font-weight: 600;
+    width: 100%}
