@@ -17,9 +17,6 @@ const PrivateRoute = ({ component: Component, auth, ...rest}) => (
     
     />
 )
-PrivateRoute.PropTypes = {
-    auth: PropTypes.object.isRequired
-}
 
 
 const mapStateToProps = ({auth}) => ({

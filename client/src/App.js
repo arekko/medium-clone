@@ -4,8 +4,9 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Landing from './components/Landing/Landing'
 import Feed from './components/Feed/Feed'
 import Profile from './components/Profile/Profile'
-import Login from './components/Login/Login'
-import Signup from './components/Signup/Signup'
+// import Login from './components/Login/Login'
+// import Signup from './components/Signup/Signup'
+import ArticleView from './components/ArticleView/ArticleView'
 import { connect } from 'react-redux'
 import { fetchUser } from './redux/actions/authActions'
 import Editor from './components/Editor/Editor'
@@ -28,8 +29,7 @@ class App extends Component {
           <div className="container">
           <Route path="/" exact component={Feed} />
           <Route path ="/profile" exact component={Profile} />
-          <Route path ="/login"  component={Login} />
-          <Route path ="/signup" component={Signup} />
+          <Route path="/articleview/:id" component={ArticleView} />
           <Switch>
             <PrivateRoute path="/editor" component={Editor} />
           </Switch> 

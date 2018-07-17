@@ -1,4 +1,4 @@
-import { LOAD_ARTICLES } from '../actions/types'
+import { LOAD_ARTICLES, GET_ARTICLE, LIKE_ARTICLE} from '../actions/types'
 
 
 const initialState = {
@@ -12,15 +12,14 @@ export default (state=initialState, action) => {
         ...state,
         articles: action.payload
       }
-    case 'VIEW_ARTICLE':
+    case GET_ARTICLE:
       return {
         ...state,
-        article: action.article
+        article: action.payload
       }
-    case 'CLAP_ARTICLE':
+    case LIKE_ARTICLE:
       let article = Object.assign({}, state.article)
       article.claps++
-      console.log(article)
       return {
         ...state,
         article: article

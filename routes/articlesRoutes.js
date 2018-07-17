@@ -26,15 +26,14 @@ const router = express.Router();
   // /**
   //  * get a particlular article to view
   //  */
-  // router
-  //   .route('/article/:id')
-  //   .get(articlecontroller.getArticle)
-
   router
-    .route('hello')
-    .get((req, res) => {
-      res.send('hello')
-    })
+    .route('/article/:id')
+    .get(articlecontroller.getArticle)
+  
+  router
+    .route('/article/like')
+    .post(articlecontroller.likeArticle)
+
 
 // 
 module.exports = router

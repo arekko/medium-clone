@@ -48,10 +48,7 @@ class Header extends React.Component {
               </li>
             </ul>
           </div>
-          <form className="form-inline">
-            <button className="btn-input" type="submit"><i className="fas fa-search search-icon"></i></button>
-          <input className="form-control mr-sm-2 header-input" type="search" placeholder="Search" aria-label="Search"/>
-          </form>
+          
           <ul className="navbar-nav navbar-right">
             {isAuthenticated ? authLinks : guestLinks}
           </ul>

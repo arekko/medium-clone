@@ -11,6 +11,8 @@ class Feed extends React.Component {
     super(props);
   }
 
+ 
+
   componentDidMount = () => {
     this.props.loadArticles()
   }

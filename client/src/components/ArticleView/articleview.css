@@ -1,0 +1,16 @@
+.title {
+  color: #000000;
+  font-weight: 600;
+  font-size: 36px;
+}
+.post-picture-wrapper {
+  padding: 2em 0;
+}
+ .body {
+  font-family: "Lora", Georgia, serif;
+  font-size: 20px;
+  line-height: 1.7;
+  font-weight: 300;
+  border: none;
+  color: rgba(0,0,0,0.8);
+}
