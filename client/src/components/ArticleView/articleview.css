@@ -14,3 +14,8 @@
   border: none;
   color: rgba(0,0,0,0.8);
 }
+.response-icon-wrapper {
+  margin-left: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+ }

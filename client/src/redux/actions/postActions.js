@@ -1,4 +1,4 @@
-import { LOAD_ARTICLES, GET_ARTICLE, LIKE_ARTICLE } from './types'
+import { LOAD_ARTICLES, GET_ARTICLE, LIKE_ARTICLE, SET_PROFILE, CLEAR_PROFILE } from './types'
 import axios from 'axios'
 
 const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:3000/api/"
@@ -40,5 +40,23 @@ export function addLike (article_id) {
         type: LIKE_ARTICLE
       })
     }).catch((err)=>console.log(err))
+  }
+}
+
+
+export function getUserProfile (_id) {
+  return (dispatch) => {
+    axios.get(`${url}user/profile/${_id}`).then((res)=>{
+      let profile = res.data
+      dispatch({type: SET_PROFILE, payload: res.data})
+    }).catch(err=>console.log(err))
+  }
+}
+export function clearUserProfile () {
+  return dispatch => {
+    dispatch({
+      type: CLEAR_PROFILE,
+      payload: {}
+    })
   }
 }

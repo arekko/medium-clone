@@ -9,15 +9,16 @@ class Header extends React.Component {
   }
 
   render() {
-    const pathname = window.location.pathname
-    console.log(pathname)
-
     const { isAuthenticated, user } = this.props.auth
 
     const authLinks = (
       <React.Fragment>
       <li className="nav-item">
-       <Link to="/editor" className="nav-link">Write a story</Link></li>
+      <Link to={`/profile/${user._id}`} className="nav-link">Profile</Link>
+     </li>
+      <li className="nav-item">
+       <Link to="/editor" className="nav-link">Write a story</Link>
+      </li>
       <li className="nav-item">
         <a href="/auth/logout" className="btn btn-outline-success ml-2 " >Logout</a>
       </li>

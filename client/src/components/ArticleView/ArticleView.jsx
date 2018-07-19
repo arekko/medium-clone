@@ -5,6 +5,7 @@ import {
 } from '../../redux/actions/postActions'
 import Header from '../Header/Header'
 import './articleview.css'
+// import FollowButton from '../FollowButton/FollowButton'
 
 
 class ArticleView extends Component {
@@ -32,8 +33,9 @@ class ArticleView extends Component {
       <Header />
       <div className="container-fluid main-container">
       <div className="row animated fadeInUp" data-animation="fadeInUp-fadeOutDown">
-        <div id="main-post" className="col-md-10 offset-md-1 main-content">
-         
+        <div id="main-post" className=" col-xs-10 col-md-8 offset-md-2 col-xs-offset-1 main-content">
+        <div className="pull-right">
+        </div>
           <div className="post-metadata">
             <img alt={author_name} className="avatar-image" src={author_img} height="40" width="40" />
             <div className="post-info">
@@ -52,6 +54,29 @@ class ArticleView extends Component {
             </p>
             <p></p>
           </div>
+
+          <div className="post-stats clearfix">
+          <div className="pull-left">
+            <div className="like-button-wrapper">
+              <button  className="like-button" data-behavior="trigger-overlay" type="submit">
+                <i className="fa fa-heart-o"></i><span className="hide-text">Like</span>
+              </button>
+              <span className="like-count">0</span>
+            </div>
+          </div>
+          <div className="pull-left">
+            <a className="response-icon-wrapper" href="#">
+              <i className="fa fa-comment-o"></i>
+              <span className="response-count" data-behavior="response-count">0</span>
+            </a>
+          </div>
+          <div className="pull-right">
+            <div className="bookmark-button-wrapper">
+              <form className="button_to" method="get" action=""><button className="bookmark-button" data-behavior="trigger-overlay" type="submit">      <span className="icon-bookmark-o"></span><span className="hide-text">Bookmark</span></button>
+              </form>
+            </div>
+          </div>
+        </div>
           
         </div>
       </div>

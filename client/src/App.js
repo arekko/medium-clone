@@ -30,9 +30,11 @@ class App extends Component {
           <Route path="/" exact component={Feed} />
           <Route path ="/profile" exact component={Profile} />
           <Route path="/articleview/:id" component={ArticleView} />
+          <Route path="/profile/:id" component={Profile} />
           <Switch>
             <PrivateRoute path="/editor" component={Editor} />
           </Switch> 
+
           </div>
         </div>
       </BrowserRouter>

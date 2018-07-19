@@ -95,4 +95,9 @@
   color: rgba(0,0,0,0.3);
   margin-right: 5px;
   text-decoration: none;
+  margin-right: 20px;
+}
+.bookmark-wrapper {
+  display: inline-block;
+  font-size: 18px;
 }

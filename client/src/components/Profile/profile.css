@@ -1,0 +1,219 @@
+.hero-wrapper {
+  /* width: 75%;
+  max-width: 550px;
+  margin: auto; */
+  padding-top: 2em;
+  padding-bottom: 2.5em;
+}
+
+.hero {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.profile-info {
+  max-width: 450px;
+  width: 80%
+}
+
+.hero-title {
+  font-weight: 700;
+  font-size: 32px;
+  cursor: default;
+}
+
+.hero-description {
+  width: 85%;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.2;
+  margin-top: 4px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-location {
+  width: 85%;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.fa-map-marker {
+  color: tomato;
+  margin-right: 6px;
+}
+
+.hero-location input {
+  width: 90%
+}
+
+body.users.show [data-react-class="UserFollowContainer"],
+body.users.edit [data-react-class="UserFollowContainer"],
+body.recommended_posts.index [data-react-class="UserFollowContainer"] {
+  display: inline-block;
+}
+
+.following-metadata {
+  margin: 1em 0 1.2em;
+}
+
+.following-metadata>span {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.following-count {
+  margin-right: 12px;
+}
+
+.edit-button {
+  -webkit-transform: translateX(-24px);
+  transform: translateX(-24px);
+}
+
+.avatar-image {
+  border-radius: 50%
+}
+
+.small-heading {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.border-top {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1.5em;
+}
+
+.posts-wrapper {
+  padding-top: 22px;
+  padding-bottom: 22px;
+  /* width: 70%;
+  max-width: 700px;
+  margin: auto; */
+}
+
+.post-panel {
+  background: #ffffff;
+  padding: 20px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+  border-radius: 3px;
+}
+
+.post-metadata {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.post-info {
+  padding-left: 10px;
+}
+
+.post-metadata .post-info a {
+  color: #00ab6b;
+  text-decoration: none;
+}
+
+.post-metadata .post-info small {
+  color: rgba(0, 0, 0, 0.44);
+}
+
+.popover-link>a {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+}
+
+.popover-link>a:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.popover-link {
+  position: relative;
+}
+
+.post-stats .fa {
+  width: 24px;
+  font-size: 22px;
+}
+
+.response-count {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.response-icon-wrapper {
+  margin-left: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+}
+
+.like-button-wrapper {
+  display: inline-block;
+}
+
+
+
+.like-button, .unlike-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+ }
+ .like-button i.fa, .unlike-button i.fa {
+  color: #00ab6b;
+  font-size: 18px;
+ }
+ .like-button-wrapper {
+  display: inline-block;
+ }
+ .like-button-wrapper form.button_to {
+  display: inline-block;
+ }
+ .like-count {
+  font-size: 14px;
+  position: relative;
+  top: -2.5px;
+  left: -3px;
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  margin-left: 3px;
+ }
+ .bookmark-button-wrapper {
+  display: inline-block;
+ }
+ .bookmark-button-wrapper form.button_to {
+  display: inline-block;
+ }
+ .bookmark-button, .unbookmark-button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+ }
+ .bookmark-button i.fa, .unbookmark-button i.fa {
+  color: rgba(0, 0, 0, 0.44);
+  font-size: 18px;
+ }
+ .hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  width: 0;
+  height: 0;
+ }

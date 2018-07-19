@@ -20,7 +20,6 @@ class Feed extends React.Component {
 
   render() {
       const { articles } = this.props
-      console.log(articles);
     
     return (
       <div>
@@ -28,7 +27,7 @@ class Feed extends React.Component {
         <div className="container">
           <div className="col-md-8 dashboard-main-content">
             {articles.length > 0 ? articles.reverse().map( article => (
-              <Post article={article}/>
+              <Post article={article} auth={this.props.auth}/>
             )): null} 
           </div>
         </div>
@@ -41,7 +40,8 @@ Feed.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  articles: state.articles.articles
+  articles: state.articles.articles,
+  auth: state.auth
 })
 
 export default connect(mapStateToProps, { loadArticles })(Feed)

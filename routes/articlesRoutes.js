@@ -4,6 +4,8 @@ const multipartWare = multipart();
 const express = require('express')
 const router = express.Router();
 
+const usercontroller = require('../controllers/user.ctrl')
+
 // module.exports = (router) => {
   /**
    * get all articles
@@ -34,6 +36,9 @@ const router = express.Router();
     .route('/article/like')
     .post(articlecontroller.likeArticle)
 
+  router
+  .route('/user/profile/:id')
+  .get(usercontroller.getUserProfile)
 
 // 
 module.exports = router

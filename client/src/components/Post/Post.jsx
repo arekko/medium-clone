@@ -2,7 +2,7 @@ import React from 'react'
 import './post.css'
 import { connect } from 'react-redux'
 import { addLike } from '../../redux/actions/postActions'
-
+import { Link } from 'react-router-dom'
 class Post extends React.Component {
 
 
@@ -16,7 +16,7 @@ class Post extends React.Component {
       <div className="post-metadata">
         <img src={this.props.article.author.avatar} alt=""/>
         <div className="post-info">
-          <a href="">{this.props.article.author.name}</a>
+          <Link to={`profile/${this.props.article.author._id}`}>{this.props.article.author.name}</Link>
           <small>{this.props.article.date}</small>
         </div>
       </div>
@@ -41,6 +41,9 @@ class Post extends React.Component {
         </div>
         <div className="pull-right">
           <a href="#" className="response-count">{this.props.article.comments.length} responses</a>
+        {this.props.auth.isAuthenticated ?  (<div className="bookmark-wrapper">
+              <i class="far fa-bookmark"></i>
+          </div>) : null }
         </div>
       </div>
     </div>
