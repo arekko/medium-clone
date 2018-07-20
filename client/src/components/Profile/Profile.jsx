@@ -5,7 +5,6 @@ import FollowButton from '../FollowButton/FollowButton'
 import { getUserProfile, clearUserProfile } from '../../redux/actions/postActions'
 import Header from '../Header/Header'
 import './profile.css'
-import { dispatch } from 'redux'
 
 class Profile extends Component {
 
@@ -21,7 +20,7 @@ class Profile extends Component {
 
   
   render() {
-    console.log(this.props);
+    console.log(this.props.profile);
     return (
       <div>
         <Header />
@@ -67,13 +66,13 @@ function ItemList ({items}) {
 
         <div className="posts-wrapper animated fadeInUp" data-animation="fadeInUp-fadeOutDown">
           <h4 className="small-heading border-top">latest</h4>
-          { items.profile.articles.reverse().map((article)=>
+          { items.profile.articles.map((article)=>
             <div className="post-panel">
               <div className="post-metadata">
                 <img alt="mark" className="avatar-image" src={items.profile.user.avatar} height="40" width="40"/>
                 <div className="post-info">
                   <div data-react-className="PopoverLink"><span className="popover-link" data-reactroot=""><a href="javascript:void(0);">{items.profile.user.name}</a></span></div>
-                  <small>Published • a must read</small>
+                  <small>Published • {article.date}</small>
                 </div>
               </div>
 
@@ -93,7 +92,7 @@ function ItemList ({items}) {
                     <form className="button_to" method="get" action="">
                       <button className="like-button" data-behavior="trigger-overlay" type="submit"><i className="far fa-heart"></i><span className="hide-text">Like</span></button>
                     </form>
-                    <span className="like-count">{article.likes}</span>
+                    <span className="like-count">{article.likes.length}</span>
                   </div>
                 </div>
                 <div className="pull-right">

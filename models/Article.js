@@ -7,7 +7,13 @@ let ArticleSchema = new Schema({
   title: String,
   description: String,
   feature_img: String,
-  likes: Number,
+  likes: [{
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
   author: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -32,9 +38,9 @@ ArticleSchema.methods.addAuthor = function (author_id) {
   this.author = author_id
   return this.save()
 }
-ArticleSchema.methods.addLike = function() {
+ArticleSchema.methods.addLike = function () {
   this.likes++
-  return this.save()
+    return this.save()
 }
 
 module.exports = mongoose.model("Article", ArticleSchema)

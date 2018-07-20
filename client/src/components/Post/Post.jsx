@@ -3,12 +3,26 @@ import './post.css'
 import { connect } from 'react-redux'
 import { addLike } from '../../redux/actions/postActions'
 import { Link } from 'react-router-dom'
+import classnames from 'classnames'
 class Post extends React.Component {
 
 
   articleLikeHandler = (id) => {
-    this.props.addLike(id)
+    this.props.addLike(id);
   }
+
+  isLiked = (likes) => {
+    const { auth } = this.props
+    console.log(likes, auth.user._id);
+    if(likes.filter(like => like.user === auth.user._id).length > 0) {
+        return true
+    } else {
+        return false   
+    }
+}
+
+
+
 
   render(){
     return (
@@ -20,7 +34,7 @@ class Post extends React.Component {
           <small>{this.props.article.date}</small>
         </div>
       </div>
-          {this.props.article.feature_img.length > 0 ? <div class="post-picture-wrapper">
+          {this.props.article.feature_img.length > 0 ? <div className="post-picture-wrapper">
             <img src={this.props.article.feature_img} alt="Thumb" />
           </div>:''}
       <div className="main-body">
@@ -35,14 +49,17 @@ class Post extends React.Component {
       <div className="post-stats">
         <div className="pull-left">
           <div className="like-button-wrapper">
-            <span onClick={() => this.articleLikeHandler(this.props.article._id)}><i className="far fa-heart like-btn"></i></span>
-            <span className="like-count">{this.props.article.likes}</span>
+            <span onClick={() => this.articleLikeHandler(this.props.article._id)}>
+            <i className={classnames('far fa-heart like-btn', {'fas fa-heart like-btn': this.isLiked(this.props.article.likes)})}></i>
+            </span>
+
+            <span className="like-count">{this.props.article.likes.length}</span>
           </div>
         </div>
         <div className="pull-right">
           <a href="#" className="response-count">{this.props.article.comments.length} responses</a>
         {this.props.auth.isAuthenticated ?  (<div className="bookmark-wrapper">
-              <i class="far fa-bookmark"></i>
+              <i className="far fa-bookmark"></i>
           </div>) : null }
         </div>
       </div>

@@ -26,8 +26,8 @@ class Feed extends React.Component {
         <Header />
         <div className="container">
           <div className="col-md-8 dashboard-main-content">
-            {articles.length > 0 ? articles.reverse().map( article => (
-              <Post article={article} auth={this.props.auth}/>
+            {articles.length > 0 ? articles.map( article => (
+              <Post article={article} auth={this.props.auth} key={article._id}/>
             )): null} 
           </div>
         </div>

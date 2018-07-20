@@ -1,11 +1,12 @@
 // src/components/FollowButton.js
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import {
-//   follow,
-//   toggleOpen
-// } from './../redux/actions/actions'
-/** renders bg white when user not follow, render green when followed */
+import {
+  follow,
+} from '../../redux/actions/postActions'
+import './followbutton.css'
+
+
 class FollowButton extends Component {
   constructor(props) {
     super(props)
@@ -39,7 +40,7 @@ class FollowButton extends Component {
 }
 const mapStateToProps = state => {
   return {
-    _user: state.authUser.user,
+    _user: state.auth.user,
   }
 }
-export default connect(null)(FollowButton);
+export default connect(mapStateToProps, { follow })(FollowButton);
