@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import FollowButton from '../FollowButton/FollowButton'
 import { getUserProfile, clearUserProfile } from '../../redux/actions/postActions'
 import Header from '../Header/Header'
+import Moment from 'react-moment'
+
 import './profile.css'
 
 class Profile extends Component {
@@ -72,7 +74,7 @@ function ItemList ({items}) {
                 <img alt="mark" className="avatar-image" src={items.profile.user.avatar} height="40" width="40"/>
                 <div className="post-info">
                   <div data-react-className="PopoverLink"><span className="popover-link" data-reactroot=""><a href="javascript:void(0);">{items.profile.user.name}</a></span></div>
-                  <small>Published • {article.date}</small>
+                  <small>Published • <Moment format="YYYY/MM/DD">{article.date}</Moment></small>
                 </div>
               </div>
 

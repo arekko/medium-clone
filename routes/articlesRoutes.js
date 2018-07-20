@@ -44,12 +44,22 @@ router
   .route('/user/follow')
   .post(usercontroller.followUser)
 
+
+//TODO: add the private middleware!!!!!
+
 //@route    Post api/posts/like/:id
 //@desc     Like post
 //@access   Private
 router
   .route('/posts/like/:id')
   .post(articlecontroller.likeArticle)
+
+//@route    Post api/posts/unlike/:id
+//@desc     unLike post
+//@access   Private
+router
+  .route('/posts/unlike/:id')
+  .post(articlecontroller.unlikeArticle)
 
 
 // 

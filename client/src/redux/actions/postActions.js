@@ -86,3 +86,17 @@ export const addLike = id => dispatch => {
       })
     )
 }
+
+// Remove like
+
+export const removeLike = id => dispatch => {
+  axios
+    .post(`${url}posts/unlike/${id}`)
+    .then(res => dispatch(loadArticles()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    )
+}
