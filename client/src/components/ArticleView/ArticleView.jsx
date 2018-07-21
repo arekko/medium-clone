@@ -5,7 +5,8 @@ import {
 } from '../../redux/actions/postActions'
 import Header from '../Header/Header'
 import './articleview.css'
-// import FollowButton from '../FollowButton/FollowButton'
+import FollowButton from '../FollowButton/FollowButton'
+import classnames from "classnames";
 
 
 class ArticleView extends Component {
@@ -17,7 +18,7 @@ class ArticleView extends Component {
   }
 
   render() {
-    const { text, title, feature_img, author, likes } = this.props._article
+    const { text, title, feature_img, author, likes, comments } = this.props._article
     let author_name, author_img, author_id
     if (author) {
       const { name, avatar, _id } = author
@@ -53,28 +54,35 @@ class ArticleView extends Component {
             <p></p>
           </div>
 
-          <div className="post-stats clearfix">
-          <div className="pull-left">
-            <div className="like-button-wrapper">
-              <button  className="like-button" data-behavior="trigger-overlay" type="submit">
-                <i className="far fa-heart"></i><span className="hide-text">Like</span>
-              </button>
-              <span className="like-count">{likes ? likes.length : null}</span>
+          <div className="post-stats">
+            <div className="pull-left">
+              <div className="like-button-wrapper">
+            <span onClick={() => this.articleLikeHandler(this.props.article._id, this.props.article.likes)}>
+            <i className='far fa-heart like-btn'></i>
+            </span>
+
+                <span className="like-count">{0}</span>
+              </div>
+            </div>
+            <div className="pull-right">
+              <a href="#" className="response-count">{0} responses</a>
+
+                <div className="bookmark-wrapper">
+                  <i className='far fa-bookmark'></i>
+                </div>
             </div>
           </div>
-          <div className="pull-left">
-            <a className="response-icon-wrapper" href="#">
-              <i className="far fa-comment-o"></i>
-              <span className="response-count" data-behavior="response-count">0</span>
-            </a>
-          </div>
-          <div className="pull-right">
-            <div className="bookmark-button-wrapper">
-              <form className="button_to" method="get" action=""><button className="bookmark-button" data-behavior="trigger-overlay" type="submit">      <span className="icon-bookmark-o"></span><span className="hide-text">Bookmark</span></button>
-              </form>
+
+          <div className="author-info">
+            <div clas="author-metadata">
+              <img alt={author_name} className="avatar-image" src={author_img} height="50" width="50" />
+              <div className="username-description">
+                <h4>{author_name}</h4>
+                <p></p>
+              </div>
             </div>
+            {this.props.user ? <FollowButton user={`${this.props.user.following}`} to_follow={`${author_id}`} /> : ''}
           </div>
-        </div>
           
         </div>
       </div>

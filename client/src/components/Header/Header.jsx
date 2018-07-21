@@ -43,11 +43,18 @@ class Header extends React.Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
+
           </div>
-          
-          <ul className="navbar-nav navbar-right">
-            {isAuthenticated ? authLinks : guestLinks}
-          </ul>
+          <div className="navbar-nav navbar-right">
+            <div className="collapse navbar-collapse " id="navbarNav">
+
+            <ul className="navbar-nav">
+              {isAuthenticated ? authLinks : guestLinks}
+            </ul>
+            </div>
+
+          </div>
+
         </nav>
 
 

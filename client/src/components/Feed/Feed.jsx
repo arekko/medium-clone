@@ -40,7 +40,7 @@ class Feed extends React.Component {
       <div>
         <Header />
         <div className="container">
-          <div className="col-md-8 dashboard-main-content">
+          <div className="col-md-8 col-sm-12 dashboard-main-content">
             {feedContent}
           </div>
         </div>

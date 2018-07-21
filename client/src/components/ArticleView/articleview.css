@@ -1,21 +1,55 @@
 .title {
-  color: #000000;
-  font-weight: 600;
-  font-size: 36px;
+    color: #000000;
+    font-weight: 600;
+    font-size: 36px;
 }
+
 .post-picture-wrapper {
-  padding: 2em 0;
+    padding: 1em 0 2em 0;
 }
- .body {
-  font-family: "Lora", Georgia, serif;
-  font-size: 20px;
-  line-height: 1.7;
-  font-weight: 300;
-  border: none;
-  color: rgba(0,0,0,0.8);
+
+.body {
+    font-family: "Lora", Georgia, serif;
+    font-size: 20px;
+    line-height: 1.7;
+    font-weight: 300;
+    border: none;
+    color: rgba(0, 0, 0, 0.8);
 }
+
 .response-icon-wrapper {
-  margin-left: 20px;
-  color: rgba(0, 0, 0, 0.6);
-  text-decoration: none;
- }
+    margin-left: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+}
+
+.author-info {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    padding: 2.5em 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 2em 0 0;
+}
+
+.avatar-image {
+    vertical-align: center;
+    margin-right: 20px;
+}
+
+.username-description {
+    display: inline-block;
+    min-width: 240px;
+    max-width: 300px;
+    margin-right: 20px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.username-description h4 {
+    margin-top: 0;
+}
