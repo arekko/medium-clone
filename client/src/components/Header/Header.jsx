@@ -9,15 +9,19 @@ class Header extends React.Component {
   }
 
   render() {
-    const pathname = window.location.pathname
-    console.log(pathname)
-
     const { isAuthenticated, user } = this.props.auth
 
     const authLinks = (
       <React.Fragment>
       <li className="nav-item">
-       <Link to="/editor" className="nav-link">Write a story</Link></li>
+        <Link className="nav-link disabled" to="/bookmarks">Bookmarks</Link>
+      </li>
+      <li className="nav-item">
+      <Link to={`/profile/${user._id}`} className="nav-link">Profile</Link>
+       </li>
+      <li className="nav-item">
+       <Link to="/editor" className="nav-link">Write a story</Link>
+      </li>
       <li className="nav-item">
         <a href="/auth/logout" className="btn btn-outline-success ml-2 " >Logout</a>
       </li>
@@ -39,22 +43,18 @@ class Header extends React.Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">Top stories <span className="sr-only">(current)</span></Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link disabled" to="bookmarks">Bookmarks</Link>
-              </li>
-            </ul>
+
           </div>
-          <form className="form-inline">
-            <button className="btn-input" type="submit"><i className="fas fa-search search-icon"></i></button>
-          <input className="form-control mr-sm-2 header-input" type="search" placeholder="Search" aria-label="Search"/>
-          </form>
-          <ul className="navbar-nav navbar-right">
-            {isAuthenticated ? authLinks : guestLinks}
-          </ul>
+          <div className="navbar-nav navbar-right">
+            <div className="collapse navbar-collapse " id="navbarNav">
+
+            <ul className="navbar-nav">
+              {isAuthenticated ? authLinks : guestLinks}
+            </ul>
+            </div>
+
+          </div>
+
         </nav>
 
 

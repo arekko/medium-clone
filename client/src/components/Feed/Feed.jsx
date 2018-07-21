@@ -5,11 +5,15 @@ import { loadArticles } from '../../redux/actions/postActions';
 import './feed.css'
 import Header from '../Header/Header'
 import fakearticles from '../../fakedata'
+import Preloader from '../common/Preloader'
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
   }
+
+
+ 
 
   componentDidMount = () => {
     this.props.loadArticles()
@@ -17,17 +21,27 @@ class Feed extends React.Component {
   
 
   render() {
-      const { articles } = this.props
-      console.log(articles);
+    const { articles, loading } = this.props
+    let feedContent
+
+    if(articles === null || loading) {
+      feedContent = <Preloader/>
+    } else {
+      feedContent = (articles.length > 0 ? articles.map( article => (
+        <Post article={article} auth={this.props.auth} key={article._id}/>
+      )): null)
+    }
+
+
+
+
     
     return (
       <div>
         <Header />
         <div className="container">
-          <div className="col-md-8 dashboard-main-content">
-            {articles.length > 0 ? articles.reverse().map( article => (
-              <Post article={article}/>
-            )): null} 
+          <div className="col-md-8 col-sm-12 dashboard-main-content">
+            {feedContent}
           </div>
         </div>
       </div>
@@ -39,7 +53,8 @@ Feed.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  articles: state.articles.articles
+  articles: state.articles.articles,
+  auth: state.auth
 })
 
 export default connect(mapStateToProps, { loadArticles })(Feed)

@@ -121,7 +121,7 @@ class Editor extends Component {
       <EditorHeader publish={this.publishStory} loading={this.state.loading} />
       <div className="container-fluid main-container">
         <div className="row">
-          <div id="main-post" className="col-md-6 offset-md-3 main-content">
+          <div id="main-post" className="col-md-8 offset-md-2 main-content">
             <div className="post-metadata">
               <img alt={this.props.auth.user.name}  src={this.props.auth.user.avatar} className="avatar-image" height="40" width="40" />
               <div className="post-info">

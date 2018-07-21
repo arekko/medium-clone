@@ -11,19 +11,42 @@ const UserSchema = new Schema({
   googletoken: String,
   avatar: String,
   phone: String,
-  followers:[
+  bookmarks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Article'
+  }],
+  followers: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user'
+      ref: 'User'
     }
   ],
   following: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    ]
-})
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
+});
+
+UserSchema.methods.follow = function (user_id) {
+  if (this.following.indexOf(user_id) === -1) {
+    this.following.push(user_id)
+  }
+  return this.save()
+};
+
+UserSchema.methods.addFollower = function (fs) {
+  this.followers.push(fs)
+};
+
+// This method add the article to user bookmarks
+UserSchema.methods.addBookmark = function(articleId) {
+  if (this.bookmarks.indexOf(articleId) === -1) {
+    this.bookmarks.push(articleId)
+  }
+  return this.save()
+}
 
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('User', UserSchema);

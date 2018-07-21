@@ -1,0 +1,31 @@
+.button {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.6em 1em 0.7em 1em;
+  border-radius: 20px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  outline: none;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+ }
+ .button:hover {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 0, 0, 0.3);
+ }
+ .button.green-border-button {
+  color: #00ab6b !important;
+  border-color: #00ab6b;
+  background-color: #fff;
+ }
+ .button.green-inner-button {
+  color: #fff;
+  background-color: #02b875;
+  border-color: #02b875;
+ }
+ .button.green-inner-button:hover {
+  color: #02b875;
+  background-color: #ffffff;
+  border-color: #02b875;
+ }

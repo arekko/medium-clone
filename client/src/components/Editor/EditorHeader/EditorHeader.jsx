@@ -23,29 +23,18 @@ class EditorHeader extends React.Component {
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">Top stories <span className="sr-only">(current)</span></Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link disabled" to="bookmarks">Bookmarks</Link>
-              </li>
-            </ul>
-          </div>
-          <ul className="navbar-nav navbar-right header-right">
-            <li className="nav-item mr-2">
-              <div 
+
+          <ul className="navbar-nav navbar-right">
+            <li className="nav-item">
+              <span
               className="nav-link publish"
               onClick={this.props.publish}
               >
-              {this.props.loading === true ? 'Publishing' : 'Publish'} <i className="fas fa-upload"></i>
-              </div>
-            </li>
-            <li className="nav-item">
-            <img alt={this.props.auth.user.name}  src={this.props.auth.user.avatar} className="avatar-image" height="40" width="40" />
+              {this.props.loading === true ? 'Publishing' : 'Publish'}
+              </span>
             </li>
           </ul>
+
         </nav>
       </div>
     );

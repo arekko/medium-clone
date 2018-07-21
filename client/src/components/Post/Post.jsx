@@ -1,44 +1,83 @@
 import React from 'react'
 import './post.css'
+import { connect } from 'react-redux'
+import { addLike, removeLike, addBookmark, remove, deleteBookmark } from '../../redux/actions/postActions'
+import { Link } from 'react-router-dom'
+import classnames from 'classnames'
+import Moment from 'react-moment'
+class Post extends React.Component {
+
+  articleLikeHandler = (id, likes) => {
+    this.isLiked(likes) ? this.props.removeLike(id) : this.props.addLike(id);
+  }
+
+  isLiked = (likesList) => {
+    const { auth } = this.props
+    return likesList.filter(like => like.user === auth.user._id).length > 0
+  }
+
+  bookmarkHandler = (articleId) => {
+    this.isBookmarked(articleId) ? this.props.deleteBookmark(articleId) : this.props.addBookmark(articleId)
+  }
+
+  isBookmarked = (id) => {
+    const { auth } = this.props
+    return auth.user.bookmarks.filter(bookmark => bookmark._id === id).length > 0
+  }
 
 
-const Post = (props) => {
 
-  console.log(props.article);
-  return (
-    <div className="post-wrapper">
-    <div className="post-metadata">
-      <img src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fgi4.md.alicdn.com%2Fimgextra%2Fi4%2F775235395%2Fjapanese-gather-bra-sexy-lace-lingerie-thin-fashion-models-cute-little-girl-student-bra-chest-free-shipping%2FT2OKl8XfBbXXXXXXXX_!!775235395.jpg_430x430q90.jpg&f=1" alt=""/>
-      <div className="post-info">
-        <a href="">{props.article.author.name}</a>
-        <small>{props.article.date}</small>
-      </div>
-    </div>
-        {props.article.feature_img.length > 0 ? <div class="post-picture-wrapper">
-          <img src={props.article.feature_img} alt="Thumb" />
-        </div>:''}
-    <div className="main-body">
-      <h3 className="post-title">
-        <a href="">{props.article.title}</a>
-      </h3>
-      <div className="post-body">
-      <p className="" dangerouslySetInnerHTML={{__html: props.article.description}}></p>
-      </div>
-      <a href="#" className="read-more">Read more</a>
-    </div>
-    <div className="post-stats">
-      <div className="pull-left">
-        <div className="like-button-wrapper">
-          <span><i className="far fa-heart like-btn"></i></span>
-          <span className="like-count">{props.article.likes.length}</span>
+
+  render(){
+    return (
+      <div className="post-wrapper">
+      <div className="post-metadata">
+        <img src={this.props.article.author.avatar} alt=""/>
+        <div className="post-info">
+          <Link to={`profile/${this.props.article.author._id}`}>{this.props.article.author.name}</Link>
+          <small>Published • <Moment format="YYYY/MM/DD">{this.props.article.date}</Moment></small>
         </div>
       </div>
-      <div className="pull-right">
-        <a href="#" className="response-count">{props.article.likes.length} responses</a>
+          {this.props.article.feature_img.length > 0 ? <div className="post-picture-wrapper">
+            <img src={this.props.article.feature_img} alt="Thumb" />
+          </div>:''}
+      <div className="main-body">
+        <h3 className="post-title">
+          <a href={`/articleview/${this.props.article._id}`}>{this.props.article.title}</a>
+        </h3>
+        <div className="post-body">
+        <p className="" dangerouslySetInnerHTML={{__html: this.props.article.description}}></p>
+        </div>
+        <a href={`/articleview/${this.props.article._id}`} className="read-more">Read more</a>
+      </div>
+      <div className="post-stats">
+        <div className="pull-left">
+          <div className="like-button-wrapper">
+            <span onClick={() => this.articleLikeHandler(this.props.article._id, this.props.article.likes)}>
+            <i className={classnames('far fa-heart like-btn', {'fas fa-heart like-btn': this.isLiked(this.props.article.likes)})}></i>
+            </span>
+
+            <span className="like-count">{this.props.article.likes.length}</span>
+          </div>
+        </div>
+        <div className="pull-right">
+          <a href="#" className="response-count">{this.props.article.comments.length} responses</a>
+        {this.props.auth.isAuthenticated ?
+          (<div className="bookmark-wrapper">
+            <i
+              className={classnames('far fa-bookmark', {'fas fa-bookmark': this.isBookmarked(this.props.article._id)})}
+              onClick={() => this.bookmarkHandler(this.props.article._id)}
+            ></i>
+          </div>) : null }
+        </div>
       </div>
     </div>
-  </div>
-  )
+    )
+  }
+  
 }
 
-export default Post
+export default connect(null, { addLike, removeLike, addBookmark, deleteBookmark })(Post)
+
+
+// <i className="far fa-bookmark" onClick={() => this.bookmarkHandler(this.props.article._id)}></i>
