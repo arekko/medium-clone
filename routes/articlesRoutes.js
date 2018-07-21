@@ -62,5 +62,22 @@ router
   .post(articlecontroller.unlikeArticle)
 
 
-// 
+//@route    Post api/posts/bookmark/:id
+//@desc     Add article to user bookmarks
+//@access   Private
+
+router
+  .route('/posts/bookmark/:id')
+  .post(usercontroller.addBookmark)
+
+//@route    Get api/getbookmarks/
+//@desc     Get all user bookmarks
+//@access   Private
+
+router
+  .route('/current_user')
+  .get(usercontroller.getUser)
+
+
+
 module.exports = router

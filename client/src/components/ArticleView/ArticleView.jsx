@@ -15,11 +15,9 @@ class ArticleView extends Component {
   componentWillMount() {
     this.props.getArticle(this.props.match.params.id)
   }
-  // componentWillUnmount() {
-  //   document.body.className = ''
-  // }
+
   render() {
-    const { text, title, feature_img, author } = this.props._article
+    const { text, title, feature_img, author, likes } = this.props._article
     let author_name, author_img, author_id
     if (author) {
       const { name, avatar, _id } = author
@@ -27,7 +25,7 @@ class ArticleView extends Component {
       author_id = _id
       author_img = avatar
     }
-    console.log(this.props._article)
+
     return (
       <div>
       <Header />
@@ -59,14 +57,14 @@ class ArticleView extends Component {
           <div className="pull-left">
             <div className="like-button-wrapper">
               <button  className="like-button" data-behavior="trigger-overlay" type="submit">
-                <i className="fa fa-heart-o"></i><span className="hide-text">Like</span>
+                <i className="far fa-heart"></i><span className="hide-text">Like</span>
               </button>
-              <span className="like-count">0</span>
+              <span className="like-count">{likes ? likes.length : null}</span>
             </div>
           </div>
           <div className="pull-left">
             <a className="response-icon-wrapper" href="#">
-              <i className="fa fa-comment-o"></i>
+              <i className="far fa-comment-o"></i>
               <span className="response-count" data-behavior="response-count">0</span>
             </a>
           </div>

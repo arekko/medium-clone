@@ -45,7 +45,7 @@ class Header extends React.Component {
                 <Link className="nav-link" to="/">Top stories <span className="sr-only">(current)</span></Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link disabled" to="bookmarks">Bookmarks</Link>
+                <Link className="nav-link disabled" to="/bookmarks">Bookmarks</Link>
               </li>
             </ul>
           </div>

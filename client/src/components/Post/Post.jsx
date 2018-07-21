@@ -1,30 +1,28 @@
 import React from 'react'
 import './post.css'
 import { connect } from 'react-redux'
-import { addLike, removeLike } from '../../redux/actions/postActions'
+import { addLike, removeLike, addBookmark } from '../../redux/actions/postActions'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import Moment from 'react-moment'
 class Post extends React.Component {
 
-articleLikeHandler = (id, likes) => {
-  this.isLiked(likes) ? this.props.removeLike(id) : this.props.addLike(id);
-}
+  articleLikeHandler = (id, likes) => {
+    this.isLiked(likes) ? this.props.removeLike(id) : this.props.addLike(id);
+  }
 
-  // isLikeStyle = (likes) => {
-
-
-
-  //   if (likes.filter(like => like.user === auth.user._id).length > 0) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
-  // @return true is user liked current post
   isLiked = (likesList) => {
     const { auth } = this.props
     return likesList.filter(like => like.user === auth.user._id).length > 0
+  }
+
+  bookmarkHandler = (articleId) => {
+    this.props.addBookmark(articleId)
+  }
+
+  isBookmarked = (id) => {
+    const { auth } = this.props
+    return auth.user.bookmarks.filter(bookmark => bookmark === id).length > 0
   }
 
 
@@ -64,8 +62,12 @@ articleLikeHandler = (id, likes) => {
         </div>
         <div className="pull-right">
           <a href="#" className="response-count">{this.props.article.comments.length} responses</a>
-        {this.props.auth.isAuthenticated ?  (<div className="bookmark-wrapper">
-              <i className="far fa-bookmark"></i>
+        {this.props.auth.isAuthenticated ?
+          (<div className="bookmark-wrapper">
+            <i
+              className={classnames('far fa-bookmark', {'fas fa-bookmark': this.isBookmarked(this.props.article._id)})}
+              onClick={() => this.bookmarkHandler(this.props.article._id)}
+            ></i>
           </div>) : null }
         </div>
       </div>
@@ -75,4 +77,7 @@ articleLikeHandler = (id, likes) => {
   
 }
 
-export default connect(null, { addLike, removeLike })(Post)
+export default connect(null, { addLike, removeLike, addBookmark })(Post)
+
+
+// <i className="far fa-bookmark" onClick={() => this.bookmarkHandler(this.props.article._id)}></i>

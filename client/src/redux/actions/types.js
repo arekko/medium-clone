@@ -5,4 +5,5 @@ export const LIKE_ARTICLE = 'LIKE_ARTICLE'
 export const SET_PROFILE = 'SET_PROFILE'
 export const CLEAR_PROFILE = 'CLEAR_PROFILE'
 export const GET_ERRORS = 'GET_ERRORS'
+export const POST_LOADING = 'POST_LOADING'
 

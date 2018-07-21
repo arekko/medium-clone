@@ -5,11 +5,13 @@ import { loadArticles } from '../../redux/actions/postActions';
 import './feed.css'
 import Header from '../Header/Header'
 import fakearticles from '../../fakedata'
+import Preloader from '../common/Preloader'
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
   }
+
 
  
 
@@ -19,16 +21,27 @@ class Feed extends React.Component {
   
 
   render() {
-      const { articles } = this.props
+    const { articles, loading } = this.props
+    let feedContent
+
+    if(articles === null || loading) {
+      feedContent = <Preloader/>
+    } else {
+      feedContent = (articles.length > 0 ? articles.map( article => (
+        <Post article={article} auth={this.props.auth} key={article._id}/>
+      )): null)
+    }
+
+
+
+
     
     return (
       <div>
         <Header />
         <div className="container">
           <div className="col-md-8 dashboard-main-content">
-            {articles.length > 0 ? articles.map( article => (
-              <Post article={article} auth={this.props.auth} key={article._id}/>
-            )): null} 
+            {feedContent}
           </div>
         </div>
       </div>

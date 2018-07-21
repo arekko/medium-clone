@@ -4,7 +4,8 @@ import {
   LIKE_ARTICLE,
   SET_PROFILE,
   CLEAR_PROFILE,
-  GET_ERRORS
+  GET_ERRORS,
+  POST_LOADING
 } from './types'
 import axios from 'axios'
 
@@ -12,6 +13,7 @@ const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:
 
 export function loadArticles() {
   return (dispatch) => {
+    dispatch(setPostLoading())
     axios.get('http://localhost:3000/api/articles')
       .then((res) => {
         dispatch({
@@ -27,6 +29,7 @@ export function loadArticles() {
 
 export function getArticle(article_id) {
   return (dispatch) => {
+    dispatch(setPostLoading())
     axios.get(`${url}article/${article_id}`)
       .then((res) => {
         let article = res.data
@@ -92,6 +95,37 @@ export const addLike = id => dispatch => {
 export const removeLike = id => dispatch => {
   axios
     .post(`${url}posts/unlike/${id}`)
+    .then(res => dispatch(loadArticles()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    )
+}
+
+export const setPostLoading = () => {
+  return {
+    type: POST_LOADING
+  }
+}
+
+
+export const addBookmark = id => dispatch => {
+  axios
+    .post(`${url}posts/bookmark/${id}`)
+    .then(res => dispatch(loadArticles()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    )
+}
+
+export const getBookmarks = () => dispatch => {
+  axios
+    .post(`${url}getBookmarks`)
     .then(res => dispatch(loadArticles()))
     .catch(err =>
       dispatch({

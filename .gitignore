@@ -74,3 +74,4 @@ typings/
 
 config/database.js
 config/auth.js
+.idea/

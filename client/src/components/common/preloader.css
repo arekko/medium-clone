@@ -1,0 +1,22 @@
+.preloader3 {
+  width:35px;
+  height:35px;
+  display:inline-block;
+  padding:0px;
+  border-radius:100%;
+  border:2px solid;
+  border-top-color:rgba(0,0,0, 0.65);
+  border-bottom-color:rgba(0,0,0, 0.65);
+  border-left-color:rgba(0,0,0, 0.15);
+  border-right-color:rgba(0,0,0, 0.15);
+  -webkit-animation: preloader3 0.8s ease-in-out infinite alternate;
+  animation: preloader3 0.8s ease-in-out infinite alternate;
+}
+@keyframes preloader3 {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+@-webkit-keyframes preloader3 {
+  from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(360deg);}
+}

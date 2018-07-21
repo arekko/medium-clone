@@ -2,8 +2,8 @@ const passport = require("passport");
 const User = require("../models/User");
 const configAuth = require("../config/auth");
 const GoogleStrategy = require("passport-google-oauth20");
-var LocalStrategy = require("passport-local").Strategy;
-
+const  LocalStrategy = require("passport-local").Strategy;
+const authController = require('../controllers/auth.ctrl')
 
 // used to serialize the user for the session
 passport.serializeUser(function(user, done) {
@@ -28,23 +28,7 @@ passport.use(
       passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     (req, token, refreshToken, profile, done) => {
-
-      User.findOne({ 'googleid': profile.id })
-        .then(user => {
-          if(user) {
-            return done(null, user)
-          } else {
-            const newUser = new User({
-              googleid: profile.id,
-              googletoken: token,
-              name: profile.displayName,
-              email: profile.emails[0].value,
-              avatar: profile.photos[0].value
-            }).save().then(newUser => done(null, newUser))
-          }
-        })
-
-
+    authController.googleAuth(token, profile, done)
     }
   )
 );
