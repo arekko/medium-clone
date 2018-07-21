@@ -1,7 +1,7 @@
 import React from 'react'
 import './post.css'
 import { connect } from 'react-redux'
-import { addLike, removeLike, addBookmark } from '../../redux/actions/postActions'
+import { addLike, removeLike, addBookmark, remove, deleteBookmark } from '../../redux/actions/postActions'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 import Moment from 'react-moment'
@@ -17,12 +17,12 @@ class Post extends React.Component {
   }
 
   bookmarkHandler = (articleId) => {
-    this.props.addBookmark(articleId)
+    this.isBookmarked(articleId) ? this.props.deleteBookmark(articleId) : this.props.addBookmark(articleId)
   }
 
   isBookmarked = (id) => {
     const { auth } = this.props
-    return auth.user.bookmarks.filter(bookmark => bookmark === id).length > 0
+    return auth.user.bookmarks.filter(bookmark => bookmark._id === id).length > 0
   }
 
 
@@ -77,7 +77,7 @@ class Post extends React.Component {
   
 }
 
-export default connect(null, { addLike, removeLike, addBookmark })(Post)
+export default connect(null, { addLike, removeLike, addBookmark, deleteBookmark })(Post)
 
 
 // <i className="far fa-bookmark" onClick={() => this.bookmarkHandler(this.props.article._id)}></i>

@@ -48,9 +48,32 @@ module.exports = {
       }).catch(next)
     },
 
+  removeBookmark: (req, res, next) => {
+
+    User.findById(req.user._id)
+      .then(user => {
+        if(user.bookmarks.filter(bookmark => bookmark.toString() === req.body.id) === 0) {
+          return res.status(400).json({ err: 'You didnt bookmark this article'})
+        }
+        const removeIndex = user.bookmarks.map( bookmark => bookmark.toString()).indexOf(req.params.id)
+
+        user.bookmarks.splice(removeIndex, 1)
+
+        user.save().then(user => res.json(user))
+      }).catch(err => res.status(404).json({ postnotfound: 'No post found'}))
+
+  },
+
   getUser: (req, res, next) => {
     User.findById(req.user._id)
-      .populate('bookmarks')
+      .populate({
+        path: 'bookmarks',
+        model: 'Article',
+        populate: {
+          path: 'author',
+          model: 'User'
+        }
+      })
       .then((user) => {
       if (!user)
         res.send(404);

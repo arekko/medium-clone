@@ -15,6 +15,7 @@ class Bookmarks extends Component {
   render() {
     const { bookmarks } = this.props.auth.user
     const { auth } = this.props
+    console.log(bookmarks)
 
     const bookmarkContent = (
       (bookmarks.length > 0 ? bookmarks.map( bookmark => (

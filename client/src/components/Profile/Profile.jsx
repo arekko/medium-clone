@@ -5,6 +5,8 @@ import FollowButton from '../FollowButton/FollowButton'
 import { getUserProfile, clearUserProfile } from '../../redux/actions/postActions'
 import Header from '../Header/Header'
 import Moment from 'react-moment'
+import Post from '../Post/Post'
+
 
 import './profile.css'
 

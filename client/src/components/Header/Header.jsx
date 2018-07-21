@@ -14,8 +14,11 @@ class Header extends React.Component {
     const authLinks = (
       <React.Fragment>
       <li className="nav-item">
+        <Link className="nav-link disabled" to="/bookmarks">Bookmarks</Link>
+      </li>
+      <li className="nav-item">
       <Link to={`/profile/${user._id}`} className="nav-link">Profile</Link>
-     </li>
+       </li>
       <li className="nav-item">
        <Link to="/editor" className="nav-link">Write a story</Link>
       </li>
@@ -40,14 +43,6 @@ class Header extends React.Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item active">
-                <Link className="nav-link" to="/">Top stories <span className="sr-only">(current)</span></Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link disabled" to="/bookmarks">Bookmarks</Link>
-              </li>
-            </ul>
           </div>
           
           <ul className="navbar-nav navbar-right">

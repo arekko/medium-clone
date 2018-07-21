@@ -8,6 +8,7 @@ import {
   POST_LOADING
 } from './types'
 import axios from 'axios'
+import { fetchUser } from "./authActions";
 
 const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:3000/api/"
 
@@ -82,6 +83,7 @@ export const addLike = id => dispatch => {
   axios
     .post(`${url}posts/like/${id}`)
     .then(res => dispatch(loadArticles()))
+    .then(res => dispatch(fetchUser()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -96,6 +98,7 @@ export const removeLike = id => dispatch => {
   axios
     .post(`${url}posts/unlike/${id}`)
     .then(res => dispatch(loadArticles()))
+    .then(res => dispatch(fetchUser()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -114,7 +117,7 @@ export const setPostLoading = () => {
 export const addBookmark = id => dispatch => {
   axios
     .post(`${url}posts/bookmark/${id}`)
-    .then(res => dispatch(loadArticles()))
+    .then(res => dispatch(fetchUser()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -123,10 +126,10 @@ export const addBookmark = id => dispatch => {
     )
 }
 
-export const getBookmarks = () => dispatch => {
+export const deleteBookmark = id => dispatch => {
   axios
-    .post(`${url}getBookmarks`)
-    .then(res => dispatch(loadArticles()))
+    .delete(`${url}posts/bookmark/${id}`)
+    .then(res => dispatch(fetchUser()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
