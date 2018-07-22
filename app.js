@@ -10,7 +10,7 @@ const passport = require('passport')
 var flash = require("connect-flash");
 const sessionSecret = require('./config/auth').sessionSecret
 const cloudinary = require('cloudinary');
-const cloudinaryKeys = require('./config/cloudinary') 
+const cloudinaryKeys = require('./config/cloudinary')
 const articleroutes = require('./routes/articlesRoutes');
 
 
@@ -52,6 +52,21 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./routes/authRoutes')(app)
 // Article routes
 app.use('/api', articleroutes);
+
+
+if (process.env.NODE_ENV == 'production') {
+  // Express will serve up produciton assets like main.js file
+  app.use(express.static('client/build'))
+
+  // Express will serve up the index.js file if it doesnt recognize the route
+  const path = require('path')
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
+
+
+
 
 const PORT  = process.env.PORT || 5000;
 

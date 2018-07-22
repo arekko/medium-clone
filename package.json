@@ -7,7 +7,9 @@
     "server": "nodemon app.js",
     "start": "node app.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run client \" \"npm run server\""
+    "dev": "concurrently \"npm run client \" \"npm run server\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+
   },
   "keywords": [],
   "author": "",
@@ -36,5 +38,6 @@
   },
   "engines": {
     "node": "8.11.1",
+    "npm": "6.1.0"
   },
 }
