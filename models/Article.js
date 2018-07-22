@@ -26,13 +26,19 @@ let ArticleSchema = new Schema({
     date: {
       type: Date,
       default: Date.now()
-    }
+    },
+    text: String
   }],
   date: {
     type: Date,
     default: Date.now()
   }
 });
+
+ArticleSchema.methods.addComment = function(comment) {
+  this.comments.push(comment)
+  return this.save()
+}
 
 ArticleSchema.methods.addAuthor = function (author_id) {
   this.author = author_id

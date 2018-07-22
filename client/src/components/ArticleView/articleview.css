@@ -39,7 +39,7 @@
 
 .avatar-image {
     vertical-align: center;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
 .username-description {
@@ -52,4 +52,9 @@
 
 .username-description h4 {
     margin-top: 0;
+}
+.author-info-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

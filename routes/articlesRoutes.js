@@ -1,24 +1,20 @@
-const articlecontroller = require('./../controllers/article.ctrl');
-const multipart = require('connect-multiparty');
+const articlecontroller = require("./../controllers/article.ctrl");
+const multipart = require("connect-multiparty");
 const multipartWare = multipart();
-const express = require('express')
+const express = require("express");
 const router = express.Router();
 
-const usercontroller = require('../controllers/user.ctrl')
+const usercontroller = require("../controllers/user.ctrl");
 
 // module.exports = (router) => {
 /**
  * get all articles
  */
-router
-  .route('/articles')
-  .get(articlecontroller.getAll);
+router.route("/articles").get(articlecontroller.getAll);
 /**
  * add an article
  */
-router
-  .route('/article')
-  .post(multipartWare, articlecontroller.addArticle);
+router.route("/article").post(multipartWare, articlecontroller.addArticle);
 /**
  * comment on an article
  */
@@ -28,64 +24,48 @@ router
 // /**
 //  * get a particlular article to view
 //  */
-router
-  .route('/article/:id')
-  .get(articlecontroller.getArticle)
+router.route("/article/:id").get(articlecontroller.getArticle);
 
-router
-  .route('/article/like')
-  .post(articlecontroller.likeArticle)
+router.route("/article/like").post(articlecontroller.likeArticle);
 
-router
-  .route('/user/profile/:id')
-  .get(usercontroller.getUserProfile)
+router.route("/user/profile/:id").get(usercontroller.getUserProfile);
 
-router
-  .route('/user/follow')
-  .post(usercontroller.followUser)
-
+router.route("/user/follow").post(usercontroller.followUser);
 
 //TODO: add the private middleware!!!!!
 
 //@route    Post api/posts/like/:id
 //@desc     Like post
 //@access   Private
-router
-  .route('/posts/like/:id')
-  .post(articlecontroller.likeArticle)
+router.route("/posts/like/:id").post(articlecontroller.likeArticle);
 
 //@route    Post api/posts/unlike/:id
 //@desc     unLike post
 //@access   Private
-router
-  .route('/posts/unlike/:id')
-  .post(articlecontroller.unlikeArticle)
-
+router.route("/posts/unlike/:id").post(articlecontroller.unlikeArticle);
 
 //@route    Post api/posts/bookmark/:id
 //@desc     Add article to user bookmarks
 //@access   Private
 
-router
-  .route('/posts/bookmark/:id')
-  .post(usercontroller.addBookmark)
+router.route("/posts/bookmark/:id").post(usercontroller.addBookmark);
 
 //@route    Delete api/posts/bookmark/:id
 //@desc     Add article to user bookmarks
 //@access   Private
 
-router
-  .route('/posts/bookmark/:id')
-  .delete(usercontroller.removeBookmark)
+router.route("/posts/bookmark/:id").delete(usercontroller.removeBookmark);
 
 //@route    Get api/getbookmarks/
 //@desc     Get all user bookmarks
 //@access   Private
 
-router
-  .route('/current_user')
-  .get(usercontroller.getUser)
+router.route("/current_user").get(usercontroller.getUser);
 
+//@route    Post api/article/comment
+//@desc     Get all user bookmarks
+//@access   Private
 
+router.route("/article/comment").post(articlecontroller.commentArticle);
 
-module.exports = router
+module.exports = router;

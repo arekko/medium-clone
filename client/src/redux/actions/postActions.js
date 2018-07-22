@@ -137,3 +137,17 @@ export const deleteBookmark = id => dispatch => {
       })
     )
 }
+
+export const addComment = (article_id, author_id, comment) => dispatch => {
+  axios.post(`${url}article/comment`, {
+    article_id,
+    author_id,
+    comment
+  }).then(res => dispatch(getArticle(article_id)))
+  .catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  )
+}
