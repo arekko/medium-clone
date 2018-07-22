@@ -27,7 +27,6 @@ class ArticleView extends Component {
       author_id = _id;
       author_img = avatar;
     }
-
     return (
       <div>
         <Header />
@@ -93,20 +92,20 @@ class ArticleView extends Component {
                     >
                       <i className="far fa-heart like-btn" />
                     </span>
-
-                    <span className="like-count">{0}</span>
+                    <span className="like-count">{this.props._article.likes !== undefined ? this.props._article.likes.length : ''}</span>
+                  </div>
+                  <div className="response-icon-wrapper">
+                    <i class="far fa-comment"></i>
+                      <span className="response-count" data-behavior="response-count">{this.props._article.comments !== undefined ? this.props._article.comments.length : ''}</span>
                   </div>
                 </div>
               </div>
 
-              <div
-                id="responses"
-                className="col-xs-10 col-md-6 col-xs-offset-1 col-md-offset-3 main-content"
-              >
-                <h4 className="small-heading">Responses</h4>
+              <div>
+                <h3 className="response mt-5 mb-3">Responses</h3>
                 <div data-behavior="responses-list" />
               </div>
-              <CommentList article={this.props._article} user={this.props.user}/>
+                {this.props.auth.isAuthenticated ? (<CommentList comments={this.props._article.comments} user={this.props.user} article_id={this.props._article._id}/>) : null}
             </div>
           </div>
         </div>

@@ -58,3 +58,26 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.response-icon-wrapper {
+ margin-left: 20px;
+ color: rgba(0, 0, 0, 0.6);
+ text-decoration: none;
+}
+.response-count {
+ font-size: 16px;
+ font-weight: 600;
+ color: rgba(0, 0, 0, 0.3);
+}
+.far {
+ width: 24px;
+ font-size: 22px;
+}
+.pull-left {
+  display: flex;
+}
+.response {
+  font-size: 16px;
+color: rgba(0, 0, 0, 0.68);
+font-weight: 600;
+}

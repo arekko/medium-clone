@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { addComment } from '../../../redux/actions/postActions'
-
+import CommentItem from '../CommentItem/CommentItem'
 class CommentList extends Component {
 
 state = {
@@ -10,9 +10,7 @@ state = {
 
 onSubmit = (e) => {
   e.preventDefault()
-  console.log(this.state.commentText)
-  console.log(this.props.article._id, this.props.user._id, this.state.commentText)
-  this.props.addComment(this.props.article._id, this.props.user._id, this.state.commentText)
+  this.props.addComment(this.props.article_id, this.props.user._id, this.state.commentText)
 
   this.setState({
     commentText: ''
@@ -27,10 +25,9 @@ onChangeHandler = e => {
 
 
   render(){
-    console.log(this.props)
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} className="mb-5">
           <div className="form-group">
             <textarea
               class="form-control"
@@ -43,6 +40,8 @@ onChangeHandler = e => {
           </div>
           <button name="commentText" type="submit" class="btn btn-outline-success mb-2">Publish</button>
         </form>
+        <hr/>
+        {this.props.comments.reverse().map(comment => <CommentItem comment={comment} key={comment._id} user={this.props.user}/>)}
       </div>
     );
   }
